@@ -6,7 +6,7 @@ export default function LoginButton({ socialNetwork, Icon }) {
     items-center justify-center 
     rounded-md border border-gray-300 p-3">
       <Icon className="text-2xl" />
-      <span>Continue with {socialNetwork}</span>
+      <span className="font-medium">Continue with {socialNetwork}</span>
     </button>
   );
 }
