@@ -4,16 +4,6 @@ import Link from "next/link";
 // import { useNavigate } from "react-router-dom";
 import { useRouter } from "next/navigation";
 
-const links = [
-  {
-    href: "/",
-    text: "Home",
-  },
-  {
-    href: "/products",
-    text: "Products",
-  },
-];
 
 export default function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -40,6 +30,16 @@ export default function Navbar() {
       router.push("/login");
     }
   }
+
+  const [tokenExists, setTokenExists] = useState(false);
+  useEffect(() => {
+    // Checking if the token exists in localStorage
+    const token = localStorage.getItem("token"); // Replace 'token' with the key you use
+    if (token) {
+      setTokenExists(true);
+    }
+  }, []);
+
   return (
     <>
       <nav className="sticky top-0 bg-white shadow-sm">
@@ -47,7 +47,7 @@ export default function Navbar() {
 
           {/* Left Section: Logo and Searchbar */}
           <div className="flex items-center h-14">
-            <a href="./index.html" className="w-full">
+            <a href="/" className="w-full">
               <img
                 className="site-logo__img"
                 style={{ height: "40px", width: "50px" }}
@@ -76,25 +76,44 @@ export default function Navbar() {
           </div>
 
           {/* Right Section: Create Post, Bell Icon, Profile */}
-          <div className="flex items-center space-x-4">
-            <button
-              type="button"
-              className="bg-white text-blue-600 border border-blue-600 p-2 rounded-md font-bold hidden md:block text-sm"
-            >
-              <a href="#">Create Post</a>
-            </button>
-            <a href="#" className="hidden md:block">
-              <img className="w-6 h-6" src="/bell_icon.svg" alt="bell_icon" />
-            </a>
-            <a href="#" className="flex items-center">
-              <img
-                className="rounded-full"
-                style={{ width: "2.3rem" }}
-                alt="Profile"
-                src="https://res.cloudinary.com/practicaldev/image/fetch/s--Ay3RvrXi--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/975225/4f71a4bb-4099-4ccf-9a89-f755a94da6b9.png"
-              />
-            </a>
-          </div>
+          {tokenExists ? (
+            <div className="flex items-center space-x-4">
+              <button
+                type="button"
+                className="bg-white text-blue-600 border border-blue-600 p-2 rounded-md font-bold hidden md:block text-sm"
+              >
+                <a href="#">Create Post</a>
+              </button>
+              <a href="#" className="hidden md:block">
+                <img className="w-6 h-6" src="/bell_icon.svg" alt="bell_icon" />
+              </a>
+              <a href="#" className="flex items-center">
+                <img
+                  className="rounded-full"
+                  style={{ width: "2.3rem" }}
+                  alt="Profile"
+                  src="https://res.cloudinary.com/practicaldev/image/fetch/s--Ay3RvrXi--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/975225/4f71a4bb-4099-4ccf-9a89-f755a94da6b9.png"
+                />
+              </a>
+            </div>
+
+          ) : (
+            <div className="flex items-center space-x-4">
+              <button
+                type="button"
+                className="p-2 rounded-md hidden md:block text-sm"
+              >
+                <a href="/login">Log in</a>
+              </button>
+              <button
+                type="button"
+                className="bg-white text-blue-600 border border-blue-600 p-2 rounded-md font-bold  text-sm"
+              >
+                <a href="#">Create account</a>
+              </button>
+            </div>
+          )}
+
         </div>
       </nav>
     </>
