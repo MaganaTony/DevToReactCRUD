@@ -42,11 +42,11 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="sticky top-0 bg-white shadow-sm">
-        <div className="navbar__container container mx-auto flex justify-between items-center px-4">
+      <nav className="sticky top-0 bg-white shadow-sm w-full">
+        <div className="grid grid-cols-3 w-full justify-between items-center px-3">
 
           {/* Left Section: Logo and Searchbar */}
-          <div className="flex items-center h-14">
+          <div className="items-center h-14 grid grid-cols-6 col-span-2">
             <a href="/" className="w-full">
               <img
                 className="site-logo__img"
@@ -55,21 +55,22 @@ export default function Navbar() {
                 alt="DEV Community"
               />
             </a>
-            <div className="hidden md:flex items-center border rounded-md w-full">
-              <form className="flex items-center relative" role="search">
+            <div className="hidden md:flex border rounded-md w-full col-span-5">
+              <form className="flex items-center relative w-full" role="search">
                 <button className="p-2">
                   <img src="/search_icon.svg" alt="search_icon" />
                 </button>
                 <input
-                  className="form-control pl-2 w-full"
+                  className="form-control w-full"
                   style={{ width: "20rem", maxWidth: "29rem" }}
                   type="search"
                   aria-label="Search"
                   placeholder="Search..."
                 />
-                <span className="absolute right-0 pr-2 text-gray-500 text-sm flex items-center">
+                <span className="absolute w-full justify-end right-2 text-gray-500 text-sm flex items-center gap-1">
                   Powered by
                   <img className="ml-1" style={{ height: ".75rem" }} src="/anglolia.svg" alt="Algolia_icon" />
+                  Algolia
                 </span>
               </form>
             </div>
@@ -77,7 +78,7 @@ export default function Navbar() {
 
           {/* Right Section: Create Post, Bell Icon, Profile */}
           {tokenExists ? (
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-4 justify-end">
               <button
                 type="button"
                 className="bg-white text-blue-600 border border-blue-600 p-2 rounded-md font-bold hidden md:block text-sm"
