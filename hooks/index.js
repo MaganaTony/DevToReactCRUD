@@ -50,6 +50,20 @@ export function useAuth(){
   return { token };
 }
 
+export function userLogged() {
+  const [userLogged, setLoggedUser] = useState(false);
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      setLoggedUser(true);
+    }
+  }, []);
+
+  //console.log(userLogged);
+
+  return userLogged;
+}
+
 // export function useAuth( {notRedirect = false, RedirectTo = '/login} ){
 //   const [token, setToken] = useState("");
 //   const router = useRouter();

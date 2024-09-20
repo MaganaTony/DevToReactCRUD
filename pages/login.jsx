@@ -56,7 +56,7 @@ export default function Login() {
     <main className="p-4 flex flex-col gap-5">
       <a href="../index.html">
         <img
-          class="w-16 mx-auto"
+          className="w-16 mx-auto"
           src="https://dev-to-uploads.s3.amazonaws.com/uploads/logos/original_logo_0DliJcfsTcciZen38gX9.png"
           alt="DEV Community"
         />

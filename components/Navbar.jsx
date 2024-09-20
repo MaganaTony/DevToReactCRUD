@@ -43,7 +43,7 @@ export default function Navbar() {
   return (
     <>
       <nav className="sticky top-0 bg-white shadow-sm w-full">
-        <div className="grid grid-cols-3 w-full justify-between items-center px-3">
+        <div className="grid grid-cols-3 w-full justify-between items-center px-5">
 
           {/* Left Section: Logo and Searchbar */}
           <div className="items-center h-14 grid grid-cols-6 col-span-2">
@@ -99,7 +99,7 @@ export default function Navbar() {
             </div>
 
           ) : (
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-4 justify-end">
               <button
                 type="button"
                 className="p-2 rounded-md hidden md:block text-sm"
