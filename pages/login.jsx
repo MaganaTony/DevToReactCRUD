@@ -34,10 +34,12 @@ export default function Login() {
   async function onSubmit(data) {
     try {
       setIsSubmitting(true);
-      const token = await loginUser(data.username, data.password);
+      const token = await loginUser(data.email, data.password);
+      console.log("token log: ",token);
+      
 
       if (token) {
-        localStorage.setItem("token", token);
+        localStorage.setItem("token", token.token);
         router.push("/"); //pushing the route to router to redirect to home page
         setIsSubmitting(false);
         return;
@@ -94,18 +96,18 @@ export default function Login() {
               type="text"
               className={clsx(
                 "border border-gray-300 p-2 rounded-md",
-                { "bg-red-500/10 border-red-500": errors.username }
+                { "bg-red-500/10 border-red-500": errors.email }
               )}
-              {...register("username", {
+              {...register("email", {
                 required: {
                   value: true,
-                  message: "Username is required",
+                  message: "email is required",
                 },
               })}
             />
-            {errors.username && (
+            {errors.email && (
               <span className="text-xs text-red-500">
-                {errors.username.message}
+                {errors.email.message}
               </span>
             )}
           </div>
@@ -115,7 +117,7 @@ export default function Login() {
               type="password"
               className={clsx(
                 "border border-gray-300 p-2 rounded-md",
-                { "bg-red-500/10 border-red-500": errors.username }
+                { "bg-red-500/10 border-red-500": errors.email }
               )}
               {...register("password", {
                 required: {
